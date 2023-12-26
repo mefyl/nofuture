@@ -1,0 +1,4 @@
+(library
+ (name nofuture_eio)
+ (public_name nofuture-eio)
+ (libraries nofuture eio))
