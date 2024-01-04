@@ -5,8 +5,8 @@ synopsis: "EIO implementation of nofuture"
 maintainer: ["mefyl <mefyl@gruntech.org>"]
 authors: ["mefyl <mefyl@gruntech.org>"]
 license: "LGPL-3.0-or-later"
-homepage: "https://gitlab.routine.co/routine/future"
-bug-reports: "https://gitlab.routine.co/routine/future/-/issues"
+homepage: "https://gitlab.routine.co/routine/nofuture"
+bug-reports: "https://gitlab.routine.co/routine/nofuture/-/issues"
 depends: [
   "dune" {>= "3.0"}
   "nofuture"
@@ -27,4 +27,7 @@ build: [
     "@doc" {with-doc}
   ]
 ]
-dev-repo: "git+https://gitlab.routine.co/routine/future.git"
+dev-repo: "git+https://gitlab.routine.co/routine/nofuture.git"
+pin-depends: [
+  [ "eio.0.13" "git+https://github.com/mefyl/eio.git#2cc420e9672e3ba7333b0cf51df9638824e93bbe" ]
+]

@@ -46,8 +46,8 @@ module In_channel = struct
       Lwt.bind (Lwt_io.read channel) (function
         | "" -> Lwt.return (Buffer.to_bytes buffer)
         | chunk ->
-            let () = Buffer.add_string buffer chunk in
-            read ())
+          let () = Buffer.add_string buffer chunk in
+          read ())
     in
     read ()
 

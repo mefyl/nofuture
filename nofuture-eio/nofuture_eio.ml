@@ -54,7 +54,10 @@ module In_channel = struct
           ] )
 
   module String_source = struct
-    type t = { string : string; mutable offset : int }
+    type t = {
+      string : string;
+      mutable offset : int;
+    }
 
     let read_methods =
       [
@@ -62,8 +65,8 @@ module In_channel = struct
           (function
           | { string = ""; _ } -> raise End_of_file
           | { string; offset = 0 } as t ->
-              let () = t.offset <- String.length string in
-              Some string
+            let () = t.offset <- String.length string in
+            Some string
           | _ -> None);
       ]
 
@@ -76,7 +79,10 @@ module In_channel = struct
   end
 
   module Bytes_source = struct
-    type t = { bytes : Bytes.t; mutable offset : int }
+    type t = {
+      bytes : Bytes.t;
+      mutable offset : int;
+    }
 
     let read_methods =
       [
@@ -84,8 +90,8 @@ module In_channel = struct
           (function
           | { bytes; _ } when Bytes.length bytes = 0 -> raise End_of_file
           | { bytes; offset = 0 } as t ->
-              let () = t.offset <- Bytes.length bytes in
-              Some bytes
+            let () = t.offset <- Bytes.length bytes in
+            Some bytes
           | _ -> None);
       ]
 
@@ -137,9 +143,9 @@ module In_channel = struct
     match List.find_map optimization Source.read_methods with
     | Some string -> string
     | None ->
-        let buffer = Cstruct.create 4096 in
-        let len = Source.single_read t buffer in
-        Cstruct.to_string ~len buffer
+      let buffer = Cstruct.create 4096 in
+      let len = Source.single_read t buffer in
+      Cstruct.to_string ~len buffer
 
   let read channel =
     let buffer, len = _read channel in

@@ -1,0 +1,33 @@
+(dirs :standard .logistic)
+
+(alias
+ (name default)
+ (deps
+  nofuture.opam
+  nofuture-eio.opam
+  nofuture-lwt.opam
+  (alias_rec nofuture/default)
+  (alias_rec nofuture-eio/default)
+  (alias_rec nofuture-lwt/default)))
+
+(rule
+ (target dune.inc)
+ (alias extdeps)
+ (deps dune-project)
+ (mode (promote))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:.logistic/dune/extdeps/extdeps.exe}
+    generate
+    --name
+    nofuture
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross
+    base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --local
+    acid,bake,hlist,sqml,timmy,timmy-lwt))))
+
+(include dune.inc)

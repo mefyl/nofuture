@@ -1,6 +1,6 @@
 (lang dune 3.0)
 
-(name future)
+(name nofuture)
 
 (generate_opam_files true)
 
@@ -12,12 +12,12 @@
 
 (version 0.0.1)
 
-(homepage https://gitlab.routine.co/routine/future)
+(homepage https://gitlab.routine.co/routine/nofuture)
 
-(bug_reports https://gitlab.routine.co/routine/future/-/issues)
+(bug_reports https://gitlab.routine.co/routine/nofuture/-/issues)
 
 (source
- (uri git+https://gitlab.routine.co/routine/future.git))
+ (uri git+https://gitlab.routine.co/routine/nofuture.git))
 
 (package
  (name nofuture)
