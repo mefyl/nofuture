@@ -1,13 +1,15 @@
 module Blocking = struct
   type 'a t = 'a Lwt.t
+
+  let bind v ~f = Lwt.bind v f
+  let map v ~f = Lwt.map f v
+  let return = Lwt.return
+  let catch = Lwt.catch
+  let both = Lwt.both
+  let all = Lwt.all
 end
 
 include Blocking
-
-let bind v ~f = Lwt.bind v f
-let map v ~f = Lwt.map f v
-let return = Lwt.return
-let catch = Lwt.catch
 
 module Scope = struct
   type t = Lwt_switch.t

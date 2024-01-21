@@ -2,14 +2,16 @@ include Nofuture_eio_intf
 
 module Blocking = struct
   type 'a t = 'a
+
+  let bind v ~f = f v
+  let map v ~f = f v
+  let return v = v
+  let catch f handler = try f () with exn -> handler exn
+  let both a b = (a, b)
+  let all list = list
 end
 
 include Blocking
-
-let bind v ~f = f v
-let map v ~f = f v
-let return v = v
-let catch f handler = try f () with exn -> handler exn
 
 module Scope = struct
   type t = Eio.Switch.t
