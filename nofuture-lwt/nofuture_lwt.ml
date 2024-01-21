@@ -17,12 +17,12 @@ module Scope = struct
   let run ?name:_ f = Lwt_switch.with_switch f
 end
 
-module Deferred = struct
+module Background = struct
   type 'a t = 'a Lwt.t
 
   let make () =
-    let deferred, wake = Lwt.wait () in
-    (deferred, Lwt.wakeup_later wake)
+    let background, wake = Lwt.wait () in
+    (background, Lwt.wakeup_later wake)
 end
 
 let defer _ f = f ()

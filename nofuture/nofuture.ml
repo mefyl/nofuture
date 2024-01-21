@@ -26,7 +26,7 @@ module type S = sig
 
       Because of this:
       - If sequentiality is required, enforce it by chaining [bind]s.
-      - If concurrency is required, see {!Deferred.}
+      - If concurrency is required, see {!Background.}
       - If concurrency is not important but can't hurt, use combiners such as
         [both] and [all] to express the fact there are no intrinsic dependencies
         between computations.
@@ -39,7 +39,10 @@ module type S = sig
       concurrency backend to interleave blocking computation. It is required by
       monadic concurrency backend ({!Lwt}, {!Async}) and a noop in effect based
       concurrency backends ({!Eio}). Monadic backend will probably run
-      [result_a] and [result_b] concurrently while effect backend won't. *)
+      [result_a] and [result_b] concurrently while effect backend won't.
+
+      In even cruder words, this is ['a Lwt.t] in {!Lwt}, ['a Deferred.t] in
+      {!Async} and ['a] in {!Eio}. *)
   module Blocking : sig
     (** A blocking computation.
 
@@ -80,9 +83,28 @@ module type S = sig
 
   include module type of Blocking
 
-  module Deferred : sig
+  (** Core primitive to run computations concurrently.
+
+      A [Background.t] is a computation that will run in the background, not
+      blocking the *current* execution thread until it is awaited.
+
+      In echo to the {!Blocking} example that does not ensures concurrency, this
+      code does:
+      {[
+        Scope.run @@ fun scope ->
+        let a = defer scope compute_a
+        and b = defer scope compute_b in
+        let+ result_a = await a
+        and+ result_b = await b in
+        combine result_a result_b
+      ]}*)
+  module Background : sig
+    (** A background computation. *)
     type 'a t
 
+    (** [make ()] returns [(background, resolve)] where [background] is a new
+        background computation that will complete with value [v] when
+        [resolve v] is called. *)
     val make : unit -> 'a t * ('a -> unit)
   end
 
@@ -92,8 +114,13 @@ module type S = sig
     val run : ?name:string -> (t -> 'res Blocking.t) -> 'res Blocking.t
   end
 
-  val defer : Scope.t -> (unit -> 'a t) -> 'a Deferred.t
-  val await : 'a Deferred.t -> 'a t
+  (** [defer scope f] creates a background computation that runs [f] without
+      blocking the current thread. *)
+  val defer : Scope.t -> (unit -> 'a t) -> 'a Background.t
+
+  (** [await background] transforms [background] in a blocking computation,
+      possibly blocking immediately until it is done depending on the backend. *)
+  val await : 'a Background.t -> 'a Blocking.t
 
   module In_channel : sig
     type t

@@ -19,12 +19,12 @@ module Scope = struct
   let run ?name f = Eio.Switch.run ?name f
 end
 
-module Deferred = struct
+module Background = struct
   type 'a t = 'a Eio.Promise.or_exn
 
   let make () =
-    let deferred, wake = Eio.Promise.create () in
-    (deferred, Eio.Promise.resolve_ok wake)
+    let background, wake = Eio.Promise.create () in
+    (background, Eio.Promise.resolve_ok wake)
 end
 
 let defer sw f = Eio.Fiber.fork_promise ~sw f
