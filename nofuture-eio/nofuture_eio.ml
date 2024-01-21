@@ -40,7 +40,7 @@ module In_channel = struct
   module Empty_source = struct
     type t = unit
 
-    let read_methods = [ Flow.String (fun () -> raise End_of_file) ]
+    let read_methods = [ Flow.String (fun () -> Some "") ]
     let single_read _ _ = raise End_of_file
   end
 
@@ -63,7 +63,6 @@ module In_channel = struct
       [
         Flow.String
           (function
-          | { string = ""; _ } -> raise End_of_file
           | { string; offset = 0 } as t ->
             let () = t.offset <- String.length string in
             Some string
