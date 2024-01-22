@@ -7,6 +7,16 @@ module Blocking = struct
   let catch = Lwt.catch
   let both = Lwt.both
   let all = Lwt.all
+  let yield = Lwt.pause
+
+  module Syntax = struct
+    let ( let* ) v f = bind v ~f
+    let ( let+ ) v f = map v ~f
+    let ( and* ) = both
+    let ( and+ ) = both
+  end
+
+  include Syntax
 end
 
 include Blocking

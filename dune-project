@@ -1,4 +1,4 @@
-(lang dune 3.0)
+(lang dune 3.12)
 
 (name nofuture)
 
@@ -19,16 +19,21 @@
 (source
  (uri git+https://gitlab.routine.co/routine/nofuture.git))
 
+(using mdx 0.4)
+
 (package
  (name nofuture)
- (synopsis "Agnostic parallel IO interface"))
+ (synopsis "Unified concurrency API")
+ (depends
+  (mdx :with-test)
+  (odoc :with-doc)))
 
 (package
  (name nofuture-lwt)
- (synopsis "LWT implementation of nofuture")
+ (synopsis "Lwt implementation of nofuture")
  (depends nofuture lwt))
 
 (package
  (name nofuture-eio)
- (synopsis "EIO implementation of nofuture")
+ (synopsis "Eio implementation of nofuture")
  (depends nofuture eio))

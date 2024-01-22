@@ -1,0 +1,113 @@
+{0 No future}
+
+Nofuture is a unified monadic API for OCaml concurrency libraries such
+as {!Async}, {!Eio} and {!Lwt}.
+
+{1 Reference}
+
+The entry point of the main library is the module {!Nofuture}.
+
+{1 Rationale}
+
+{1 Limitation and concerns}
+
+{1 Quickstart}
+
+{2 Blocking computations}
+
+The core primitive of nofuture is the [Blocking] monad which
+represents a computation that can block on external dependencies, such
+as waiting for network i/o or acquiring a mutex. Its goal is to ensure
+other blocking computation can run in the meantime when this happens.
+
+{@ocaml toplevel[
+# (* This execution thread will block for one second, but other one
+  may execute in the meantime.  *)
+  run @@ fun () ->
+  let+ () = sleep 1. in
+  print_endline "J'ai bien dormi"
++mock time is now 1
+J'ai bien dormi
+
+- : unit = ()
+]}
+
+Combining blocking computations with eg. {!Blocking.both} or
+{!Blocking.all} states the combined computations are independent and
+{i CAN} be run concurrently, but depending on the backend it doesn't
+mean they {i WILL} be run concurrently.
+
+For instance, the {!Nofuture_lwt} backend will run the jobs
+concurrently:
+
+{@ocaml toplevel[
+# open Nofuture_lwt
+# run @@ fun () ->
+  let+ () =
+    let+ () = sleep 3. in
+    print_endline "Je me croyais au paradis"
+  and+ () =
+    let+ () = sleep 2. in
+    print_endline "Et moi aussi"
+  and+ () =
+    let+ () = sleep 1. in
+    print_endline "J'ai bien dormi"
+  in
+  ()
+J'ai bien dormi
+Et moi aussi
+Je me croyais au paradis
+
+- : unit = ()
+]}
+
+The {!Nofuture_eio} backend will however run them sequentially:
+
+{@ocaml toplevel[
+# open Nofuture_eio
+# run @@ fun () ->
+  let+ () =
+    let+ () = sleep 3. in
+    print_endline "Je me croyais au paradis"
+  and+ () =
+    let+ () = sleep 2. in
+    print_endline "Et moi aussi"
+  and+ () =
+    let+ () = sleep 1. in
+    print_endline "J'ai bien dormi"
+  in
+  ()
++mock time is now 3
+Je me croyais au paradis
++mock time is now 5
+Et moi aussi
++mock time is now 6
+J'ai bien dormi
+
+- : unit = ()
+]}
+
+This is because {!Blocking} is not a concurrency primitive per se, but
+rather a plumbing primitive that gives the concurrency backend the
+opportunity to do its deed and not block the whole domain. You may see
+it as the tax you must pay to make your concurrent code work on all
+backends. While combiners are not guaranteed to produce concurrency it
+is still a good idea to use them when possible as it's always better to
+not introduce unneccessary sequential dependencies.
+
+Similarly, exception raised from a {!Blocking} computation must be
+caught using {!Blocking.catch} as they may escape the standard [try]
+keyword.
+
+{@ocaml toplevel[
+# run @@ fun () ->
+  catch
+    (fun () ->
+       let+ () = yield () in
+       raise End_of_file)
+    (function
+     | End_of_file -> print_string "EOF"
+     | e -> raise e)
+EOF
+- : unit = ()
+]}

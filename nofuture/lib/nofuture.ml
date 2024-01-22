@@ -22,11 +22,11 @@ module type S = sig
       [let+] would force sequentiallity. Depending on the backend it doesn't
       mean that they WILL run concurrently. If concurrence is required either
       for performances or correctness -- eg. the two computations wait on each
-      other -- then refer to the {!Deffered} module.
+      other -- then refer to the {!Background} module.
 
       Because of this:
       - If sequentiality is required, enforce it by chaining [bind]s.
-      - If concurrency is required, see {!Background.}
+      - If concurrency is required, see {!Background}.
       - If concurrency is not important but can't hurt, use combiners such as
         [both] and [all] to express the fact there are no intrinsic dependencies
         between computations.
@@ -79,9 +79,31 @@ module type S = sig
 
     (** [catch f handle] runs [f] and handles escaping exception with [handle]. *)
     val catch : (unit -> 'a t) -> (exn -> 'a t) -> 'a t
+
+    (** [yield ()] is a blocking computation that immediately finishes.
+
+        It can be used to give other blocking computations the opportunity to
+        run at this point. *)
+    val yield : unit -> unit t
+
+    module Syntax : sig
+      (** [( let* ) v f] is [bind v ~f] *)
+      val ( let* ) : 'a t -> ('a -> 'b t) -> 'b t
+
+      (** [( let+ ) v f] is [map v ~f] *)
+      val ( let+ ) : 'a t -> ('a -> 'b) -> 'b t
+
+      (** [( and* )] is [both] *)
+      val ( and* ) : 'a t -> 'b t -> ('a * 'b) t
+
+      (** [( and+ )] is [both] *)
+      val ( and+ ) : 'a t -> 'b t -> ('a * 'b) t
+    end
+
+    include module type of Syntax
   end
 
-  include module type of Blocking
+  include module type of Blocking with type 'a t = 'a Blocking.t
 
   (** Core primitive to run computations concurrently.
 

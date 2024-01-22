@@ -1,0 +1,14 @@
+(documentation
+ (package nofuture)
+ (mld_files "index"))
+
+(mdx
+ (libraries
+  eio
+  eio_main
+  eio.core
+  eio.mock
+  lwt.unix
+  nofuture-eio
+  nofuture-lwt)
+ (preludes prelude.ml))

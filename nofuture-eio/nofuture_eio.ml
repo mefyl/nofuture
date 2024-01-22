@@ -9,6 +9,16 @@ module Blocking = struct
   let catch f handler = try f () with exn -> handler exn
   let both a b = (a, b)
   let all list = list
+  let yield = Eio.Fiber.yield
+
+  module Syntax = struct
+    let ( let* ) v f = bind v ~f
+    let ( let+ ) v f = map v ~f
+    let ( and* ) = both
+    let ( and+ ) = both
+  end
+
+  include Syntax
 end
 
 include Blocking
