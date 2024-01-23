@@ -1,0 +1,4 @@
+(test
+ (name test)
+ (package nofuture-eio)
+ (libraries eio.mock nofuture_eio nofuture_tests))

@@ -35,7 +35,11 @@ module Background = struct
     (background, Lwt.wakeup_later wake)
 end
 
-let defer _ f = f ()
+let defer switch f =
+  let res = f () in
+  let () = Lwt_switch.add_hook (Some switch) (fun () -> Lwt.(res >|= ignore)) in
+  res
+
 let await p = p
 
 module In_channel = struct

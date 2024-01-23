@@ -19,6 +19,8 @@
 (source
  (uri git+https://gitlab.routine.co/routine/nofuture.git))
 
+(executables_implicit_empty_intf true)
+
 (using mdx 0.4)
 
 (package
@@ -31,9 +33,17 @@
 (package
  (name nofuture-lwt)
  (synopsis "Lwt implementation of nofuture")
- (depends nofuture lwt))
+ (depends
+  lwt
+  nofuture
+  (alcotest :with-test)
+  (ppx_here :with-test)))
 
 (package
  (name nofuture-eio)
  (synopsis "Eio implementation of nofuture")
- (depends nofuture eio))
+ (depends
+  eio
+  nofuture
+  (alcotest :with-test)
+  (ppx_here :with-test)))

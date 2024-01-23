@@ -9,8 +9,10 @@ homepage: "https://gitlab.routine.co/routine/nofuture"
 bug-reports: "https://gitlab.routine.co/routine/nofuture/-/issues"
 depends: [
   "dune" {>= "3.12"}
-  "nofuture"
   "eio"
+  "nofuture"
+  "alcotest" {with-test}
+  "ppx_here" {with-test}
   "odoc" {with-doc}
 ]
 build: [
