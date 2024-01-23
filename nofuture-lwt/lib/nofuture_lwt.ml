@@ -47,35 +47,30 @@ module In_channel = struct
 
   let close = Lwt_io.close
   let empty = Lwt_io.of_bytes ~mode:Input @@ Lwt_bytes.create 0
-  let of_bytes bytes = Lwt_io.of_bytes ~mode:Input @@ Lwt_bytes.of_bytes bytes
 
   let of_string string =
     Lwt_io.of_bytes ~mode:Input @@ Lwt_bytes.of_string string
 
   let read_char = Lwt_io.read_char_opt
-  let read_string channel = Lwt_io.read ~count:4096 channel
-  let read channel = Lwt.map Bytes.of_string @@ read_string channel
+  let read channel = Lwt_io.read ~count:4096 channel
 
   let read_all channel =
     let buffer = Buffer.create 512 in
     let rec read () =
       Lwt.bind (Lwt_io.read channel) (function
-        | "" -> Lwt.return (Buffer.to_bytes buffer)
+        | "" -> Buffer.to_bytes buffer |> Bytes.unsafe_to_string |> Lwt.return
         | chunk ->
           let () = Buffer.add_string buffer chunk in
           read ())
     in
     read ()
-
-  let read_all_string channel = Lwt.map Bytes.to_string @@ read_all channel
 end
 
 module Out_channel = struct
   type t = Lwt_io.output_channel
 
   let close = Lwt_io.close
-  let write_string = Lwt_io.write
-  let write t bytes = Lwt_io.write t @@ Bytes.to_string bytes
+  let write = Lwt_io.write
 end
 
 module Mutex = struct

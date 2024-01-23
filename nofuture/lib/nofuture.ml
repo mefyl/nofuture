@@ -149,21 +149,17 @@ module type S = sig
 
     val close : t -> unit Blocking.t
     val empty : t
-    val of_bytes : Bytes.t -> t
     val of_string : string -> t
     val read_char : t -> char option Blocking.t
-    val read : t -> Bytes.t Blocking.t
-    val read_string : t -> string Blocking.t
-    val read_all : t -> Bytes.t Blocking.t
-    val read_all_string : t -> string Blocking.t
+    val read : t -> string Blocking.t
+    val read_all : t -> string Blocking.t
   end
 
   module Out_channel : sig
     type t
 
     val close : t -> unit Blocking.t
-    val write : t -> Bytes.t -> unit Blocking.t
-    val write_string : t -> string -> unit Blocking.t
+    val write : t -> string -> unit Blocking.t
   end
 
   module Mutex : sig

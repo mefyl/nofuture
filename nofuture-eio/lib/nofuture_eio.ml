@@ -89,47 +89,12 @@ module In_channel = struct
       len
   end
 
-  module Bytes_source = struct
-    type t = {
-      bytes : Bytes.t;
-      mutable offset : int;
-    }
-
-    let read_methods =
-      [
-        Flow.Bytes
-          (function
-          | { bytes; _ } when Bytes.length bytes = 0 -> raise End_of_file
-          | { bytes; offset = 0 } as t ->
-            let () = t.offset <- Bytes.length bytes in
-            Some bytes
-          | _ -> None);
-      ]
-
-    let single_read t dst =
-      let len = Bytes.length t.bytes in
-      if t.offset = len then raise End_of_file;
-      let len = min (Cstruct.length dst) (len - t.offset) in
-      Cstruct.blit_from_bytes t.bytes t.offset dst 0 len;
-      t.offset <- t.offset + len;
-      len
-  end
-
   let of_string string =
     Eio.Resource.T
       ( { String_source.string; offset = 0 },
         Eio.Resource.handler
           [
             H (Eio.Flow.Pi.Source, (module String_source));
-            H (Eio.Resource.Close, fun _ -> ());
-          ] )
-
-  let of_bytes bytes =
-    Eio.Resource.T
-      ( { Bytes_source.bytes; offset = 0 },
-        Eio.Resource.handler
-          [
-            H (Eio.Flow.Pi.Source, (module Bytes_source));
             H (Eio.Resource.Close, fun _ -> ());
           ] )
 
@@ -144,13 +109,9 @@ module In_channel = struct
     let len = Eio.Flow.single_read channel buffer in
     (buffer, len)
 
-  let read_string (Eio.Resource.T (t, ops)) =
+  let read (Eio.Resource.T (t, ops)) =
     let module Source = (val Eio.Resource.get ops Eio.Flow.Pi.Source) in
-    let optimization = function
-      | Flow.String f -> f t
-      | Flow.Bytes f -> Option.map Bytes.to_string (f t)
-      | _ -> None
-    in
+    let optimization = function Flow.String f -> f t | _ -> None in
     match List.find_map optimization Source.read_methods with
     | Some string -> string
     | None ->
@@ -158,20 +119,14 @@ module In_channel = struct
       let len = Source.single_read t buffer in
       Cstruct.to_string ~len buffer
 
-  let read channel =
-    let buffer, len = _read channel in
-    Cstruct.to_bytes ~len buffer
-
-  let read_all_string = Eio.Flow.read_all
-  let read_all channel = Bytes.of_string @@ read_all_string channel
+  let read_all = Eio.Flow.read_all
 end
 
 module Out_channel = struct
   type t = [ Eio.Flow.sink_ty | `Close ] Eio.Resource.t
 
   let close = Eio.Flow.close
-  let write_string t string = Eio.Flow.write t [ Cstruct.of_string string ]
-  let write t bytes = Eio.Flow.write t [ Cstruct.of_bytes bytes ]
+  let write t string = Eio.Flow.write t [ Cstruct.of_string string ]
 end
 
 module Mutex = struct
