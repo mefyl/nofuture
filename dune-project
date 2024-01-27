@@ -31,10 +31,10 @@
   (odoc :with-doc)))
 
 (package
- (name nofuture-lwt)
- (synopsis "Lwt implementation of nofuture")
+ (name nofuture-async)
+ (synopsis "Async implementation of nofuture")
  (depends
-  lwt
+  async
   nofuture
   (alcotest :with-test)
   (ppx_here :with-test)))
@@ -44,6 +44,15 @@
  (synopsis "Eio implementation of nofuture")
  (depends
   eio
+  nofuture
+  (alcotest :with-test)
+  (ppx_here :with-test)))
+
+(package
+ (name nofuture-lwt)
+ (synopsis "Lwt implementation of nofuture")
+ (depends
+  lwt
   nofuture
   (alcotest :with-test)
   (ppx_here :with-test)))

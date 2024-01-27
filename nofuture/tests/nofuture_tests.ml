@@ -41,11 +41,13 @@ end = struct
       let a =
         defer scope @@ fun () ->
         let () = check ~here:[%here] 0 in
+        let* () = Future.yield () in
         let+ () = Future.yield () in
         check ~here:[%here] 2
       and b =
         defer scope @@ fun () ->
         let () = check ~here:[%here] 1 in
+        let* () = Future.yield () in
         let+ () = Future.yield () in
         check ~here:[%here] 3
       in
@@ -66,11 +68,13 @@ end = struct
         let _ =
           defer scope @@ fun () ->
           let () = check ~here:[%here] 0 in
+          let* () = Future.yield () in
           let+ () = Future.yield () in
           check ~here:[%here] 2
         and _ =
           defer scope @@ fun () ->
           let () = check ~here:[%here] 1 in
+          let* () = Future.yield () in
           let+ () = Future.yield () in
           check ~here:[%here] 3
         in

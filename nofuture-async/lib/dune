@@ -1,0 +1,4 @@
+(library
+ (name nofuture_async)
+ (public_name nofuture-async)
+ (libraries nofuture async))
