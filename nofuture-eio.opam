@@ -9,7 +9,7 @@ homepage: "https://gitlab.routine.co/routine/nofuture"
 bug-reports: "https://gitlab.routine.co/routine/nofuture/-/issues"
 depends: [
   "dune" {>= "3.12"}
-  "eio"
+  "eio" {>= "0.14"}
   "nofuture"
   "alcotest" {with-test}
   "ppx_here" {with-test}
@@ -30,6 +30,3 @@ build: [
   ]
 ]
 dev-repo: "git+https://gitlab.routine.co/routine/nofuture.git"
-pin-depends: [
-  [ "eio.0.13" "git+https://github.com/mefyl/eio.git#2cc420e9672e3ba7333b0cf51df9638824e93bbe" ]
-]

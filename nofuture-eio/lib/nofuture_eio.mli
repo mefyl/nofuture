@@ -1,5 +1,3 @@
-include module type of Nofuture_eio_intf
-
 include
   Nofuture.S
     with type 'a Blocking.t = 'a

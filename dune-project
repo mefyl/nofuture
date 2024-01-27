@@ -43,7 +43,8 @@
  (name nofuture-eio)
  (synopsis "Eio implementation of nofuture")
  (depends
-  eio
+  (eio
+   (>= 0.14))
   nofuture
   (alcotest :with-test)
   (ppx_here :with-test)))

@@ -1,3 +1,0 @@
-pin-depends: [
-  [ "eio.0.13" "git+https://github.com/mefyl/eio.git#2cc420e9672e3ba7333b0cf51df9638824e93bbe" ]
-]
