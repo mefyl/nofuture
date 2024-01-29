@@ -87,10 +87,16 @@ module type S = sig
     val yield : unit -> unit t
 
     module Syntax : sig
-      (** [( let* ) v f] is [bind v ~f] *)
+      (** [v >>= f] is [bind v ~f] *)
+      val ( >>= ) : 'a t -> ('a -> 'b t) -> 'b t
+
+      (** [( let* )] is [( >>= )] *)
       val ( let* ) : 'a t -> ('a -> 'b t) -> 'b t
 
-      (** [( let+ ) v f] is [map v ~f] *)
+      (** [v >>| f] is [map v ~f] *)
+      val ( >>| ) : 'a t -> ('a -> 'b) -> 'b t
+
+      (** [( let+ ) v f] is [( >>| )] *)
       val ( let+ ) : 'a t -> ('a -> 'b) -> 'b t
 
       (** [( and* )] is [both] *)

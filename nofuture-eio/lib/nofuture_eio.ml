@@ -12,8 +12,10 @@ module Blocking = struct
   let yield = Eio.Fiber.yield
 
   module Syntax = struct
-    let ( let* ) v f = bind v ~f
-    let ( let+ ) v f = map v ~f
+    let ( >>= ) v f = bind v ~f
+    let ( let* ) = ( >>= )
+    let ( >>| ) v f = map v ~f
+    let ( let+ ) = ( >>| )
     let ( and* ) = both
     let ( and+ ) = both
   end
