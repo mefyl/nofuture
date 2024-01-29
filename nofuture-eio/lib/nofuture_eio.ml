@@ -109,13 +109,18 @@ module In_channel = struct
     let len = Eio.Flow.single_read channel buffer in
     (buffer, len)
 
-  let read (Eio.Resource.T (t, ops)) =
+  let read ?size (Eio.Resource.T (t, ops)) =
     let module Source = (val Eio.Resource.get ops Eio.Flow.Pi.Source) in
     let optimization = function Flow.String f -> f t | _ -> None in
     match List.find_map optimization Source.read_methods with
-    | Some string -> string
-    | None ->
-      let buffer = Cstruct.create 4096 in
+    | Some string
+      when match size with
+           | None -> true
+           | Some size -> String.length string <= size ->
+      string
+    | _ ->
+      let size = match size with None -> 4096 | Some size -> size in
+      let buffer = Cstruct.create size in
       let len = Source.single_read t buffer in
       Cstruct.to_string ~len buffer
 

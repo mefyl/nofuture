@@ -151,7 +151,7 @@ module type S = sig
     val empty : t
     val of_string : string -> t
     val read_char : t -> char option Blocking.t
-    val read : t -> string Blocking.t
+    val read : ?size:int -> t -> string Blocking.t
     val read_all : t -> string Blocking.t
   end
 

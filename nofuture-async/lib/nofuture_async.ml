@@ -77,18 +77,25 @@ module In_channel = struct
         let () = channel.position <- channel.position + 1 in
         return (Some channel.content.[channel.position - 1])
 
-  let read = function
+  let read ?size = function
     | Empty -> return ""
     | Reader reader -> (
-      let buffer = Bytes.create 4096 in
+      let size = match size with None -> 4096 | Some size -> size in
+      let buffer = Bytes.create size in
       Reader.read reader buffer >>| function
       | `Ok length -> Bytes.sub_string buffer 0 length
       | `Eof -> "")
-    | String ({ position = 0; content } as channel) ->
+    | String ({ position = 0; content } as channel)
+      when match size with
+           | None -> true
+           | Some size -> String.length content <= size ->
       let () = channel.position <- String.length content in
       return content
     | String ({ position; content } as channel) ->
-      let length = String.length channel.content in
+      let length =
+        let length = String.length channel.content in
+        match size with None -> length | Some size -> min size length
+      in
       let () = channel.position <- length in
       return (String.sub content position (length - position))
 

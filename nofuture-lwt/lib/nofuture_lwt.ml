@@ -52,7 +52,10 @@ module In_channel = struct
     Lwt_io.of_bytes ~mode:Input @@ Lwt_bytes.of_string string
 
   let read_char = Lwt_io.read_char_opt
-  let read channel = Lwt_io.read ~count:4096 channel
+
+  let read ?size channel =
+    let count = match size with None -> 4096 | Some size -> size in
+    Lwt_io.read ~count channel
 
   let read_all channel =
     let buffer = Buffer.create 512 in
