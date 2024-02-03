@@ -60,7 +60,7 @@ module In_channel = struct
     Lwt_io.read ~count channel
 
   let read_all channel =
-    let buffer = Buffer.create 512 in
+    let buffer = Buffer.create 4096 in
     let rec read () =
       Lwt.bind (Lwt_io.read channel) (function
         | "" -> Buffer.to_bytes buffer |> Bytes.unsafe_to_string |> Lwt.return
@@ -69,6 +69,24 @@ module In_channel = struct
           read ())
     in
     read ()
+
+  let read_until channel stop =
+    let buffer = Buffer.create 128 in
+    let rec loop () =
+      Lwt.try_bind
+        (fun () -> read_char channel)
+        (function
+          | None -> Lwt.return (Buffer.contents buffer)
+          | Some char when Char.equal char stop ->
+            Lwt.return (Buffer.contents buffer)
+          | Some char ->
+            let () = Buffer.add_char buffer char in
+            loop ())
+        (function
+          | End_of_file -> Lwt.return (Buffer.contents buffer)
+          | exn -> Lwt.fail exn)
+    in
+    loop ()
 end
 
 module Out_channel = struct
