@@ -57,3 +57,22 @@
   nofuture
   (alcotest :with-test)
   (ppx_here :with-test)))
+
+(package
+ (name nofuture-lwt-unix)
+ (synopsis "Lwt implementation of nofuture for Unix")
+ (depends
+  lwt
+  nofuture-lwt
+  (alcotest :with-test)
+  (ppx_here :with-test)))
+
+(package
+ (name nofuture-lwt-jsoo)
+ (synopsis "Lwt implementation of nofuture for js_of_ocaml")
+ (depends
+  lwt
+  nofuture-lwt
+  js_of_ocaml
+  (alcotest :with-test)
+  (ppx_here :with-test)))

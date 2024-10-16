@@ -150,6 +150,21 @@ module type S = sig
       possibly blocking immediately until it is done depending on the backend. *)
   val await : 'a Background.t -> 'a Blocking.t
 
+  module Mutex : sig
+    type t
+
+    val make : unit -> t
+    val use : t -> (unit -> 'a Blocking.t) -> 'a Blocking.t
+  end
+
+  module Condition : sig
+    type t
+
+    val await : ?mutex:Mutex.t -> t -> unit Blocking.t
+    val broadcast : t -> unit
+    val make : unit -> t
+  end
+
   module In_channel : sig
     type t
 
@@ -166,20 +181,5 @@ module type S = sig
 
     val close : t -> unit Blocking.t
     val write : t -> string -> unit Blocking.t
-  end
-
-  module Mutex : sig
-    type t
-
-    val make : unit -> t
-    val use : t -> (unit -> 'a Blocking.t) -> 'a Blocking.t
-  end
-
-  module Condition : sig
-    type t
-
-    val await : ?mutex:Mutex.t -> t -> unit Blocking.t
-    val broadcast : t -> unit
-    val make : unit -> t
   end
 end

@@ -1,0 +1,4 @@
+(library
+ (name nofuture_lwt_unix)
+ (public_name nofuture-lwt-unix)
+ (libraries lwt lwt.unix nofuture nofuture-lwt unix))

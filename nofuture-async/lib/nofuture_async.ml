@@ -47,7 +47,7 @@ module Background = struct
     let resolve =
       match !ivar with
       | None -> failwith "unreachable"
-      | Some ivar -> Ivar.fill ivar
+      | Some ivar -> Ivar.fill_exn ivar
     in
     (background, resolve)
 end
@@ -144,7 +144,7 @@ module Mutex = struct
     if mutex.locked then
       match Queue.take_opt mutex.waiting with
       | None -> mutex.locked <- false
-      | Some ivar -> Ivar.fill ivar ()
+      | Some ivar -> Ivar.fill_exn ivar ()
 
   let use mutex f =
     let* () = lock mutex in

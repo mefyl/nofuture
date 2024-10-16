@@ -1,3 +1,5 @@
+include Nofuture_lwt_intf
+
 module Blocking = struct
   type 'a t = 'a Lwt.t
 
@@ -44,58 +46,6 @@ let defer switch f =
 
 let await p = p
 
-module In_channel = struct
-  type t = Lwt_io.input_channel
-
-  let close = Lwt_io.close
-  let empty = Lwt_io.of_bytes ~mode:Input @@ Lwt_bytes.create 0
-
-  let of_string string =
-    Lwt_io.of_bytes ~mode:Input @@ Lwt_bytes.of_string string
-
-  let read_char = Lwt_io.read_char_opt
-
-  let read ?size channel =
-    let count = match size with None -> 4096 | Some size -> size in
-    Lwt_io.read ~count channel
-
-  let read_all channel =
-    let buffer = Buffer.create 4096 in
-    let rec read () =
-      Lwt.bind (Lwt_io.read channel) (function
-        | "" -> Buffer.to_bytes buffer |> Bytes.unsafe_to_string |> Lwt.return
-        | chunk ->
-          let () = Buffer.add_string buffer chunk in
-          read ())
-    in
-    read ()
-
-  let read_until channel stop =
-    let buffer = Buffer.create 128 in
-    let rec loop () =
-      Lwt.try_bind
-        (fun () -> read_char channel)
-        (function
-          | None -> Lwt.return (Buffer.contents buffer)
-          | Some char when Char.equal char stop ->
-            Lwt.return (Buffer.contents buffer)
-          | Some char ->
-            let () = Buffer.add_char buffer char in
-            loop ())
-        (function
-          | End_of_file -> Lwt.return (Buffer.contents buffer)
-          | exn -> Lwt.fail exn)
-    in
-    loop ()
-end
-
-module Out_channel = struct
-  type t = Lwt_io.output_channel
-
-  let close = Lwt_io.close
-  let write = Lwt_io.write
-end
-
 module Mutex = struct
   type t = Lwt_mutex.t
 
@@ -109,4 +59,97 @@ module Condition = struct
   let await ?mutex condition = Lwt_condition.wait ?mutex condition
   let broadcast condition = Lwt_condition.broadcast condition ()
   let make () = Lwt_condition.create ()
+end
+
+module In_channel = struct
+  type t = {
+    close : unit -> unit Lwt.t;
+    mutable current : (int * string) option;
+    stream : string Lwt_stream.t;
+  }
+
+  let close { close; _ } = close ()
+
+  let empty =
+    {
+      close = (fun () -> Lwt.return_unit);
+      current = None;
+      stream = Lwt_stream.of_list [];
+    }
+
+  let of_string current =
+    {
+      close = (fun () -> Lwt.return_unit);
+      current = Some (0, current);
+      stream = Lwt_stream.of_list [];
+    }
+
+  let read_char = function
+    | { current = Some (idx, current); _ } as channel ->
+      let () =
+        channel.current <-
+          (if idx + 1 < String.length current then Some (idx + 1, current)
+           else None)
+      in
+      Some current.[idx] |> Lwt.return
+    | channel -> (
+      Lwt_stream.get channel.stream >>| function
+      | None -> None
+      | Some s when String.length s = 1 -> Some s.[0]
+      | Some s ->
+        let () = channel.current <- Some (1, s) in
+        Some s.[0])
+
+  let rec read ?size channel =
+    match size with
+    | None -> (
+      match channel.current with
+      | Some (idx, current) ->
+        let () = channel.current <- None in
+        String.sub current idx (String.length current - idx) |> Lwt.return
+      | None -> (
+        Lwt_stream.get channel.stream >>| function
+        | None -> ""
+        | Some chunk -> chunk))
+    | Some size ->
+      let open Lwt.Syntax in
+      let* chunk = read channel in
+      let length = String.length chunk in
+      if length = 0 || length = size then Lwt.return chunk
+      else if length > size then
+        let () = channel.current <- Some (size, chunk) in
+        Lwt.return (String.sub chunk 0 size)
+      else
+        let+ next = read ~size:(size - length) channel in
+        chunk ^ next
+
+  let read_all channel =
+    let open Lwt.Syntax in
+    let+ chunks = Lwt_stream.to_list channel.stream in
+    let chunks =
+      match channel.current with
+      | None -> chunks
+      | Some (idx, current) ->
+        String.sub current idx (String.length current - idx) :: chunks
+    in
+    String.concat "" chunks
+
+  let of_stream ?(close = fun () -> Lwt.return_unit) stream =
+    { close; current = None; stream }
+
+  let to_stream { current; stream; _ } =
+    match current with
+    | Some (idx, current) ->
+      Lwt_stream.append
+        (Lwt_stream.return
+           (String.sub current idx @@ (String.length current - idx)))
+        stream
+    | None -> stream
+end
+
+module Out_channel = struct
+  type t = |
+
+  let close = function (_ : t) -> .
+  let write = function (_ : t) -> .
 end
