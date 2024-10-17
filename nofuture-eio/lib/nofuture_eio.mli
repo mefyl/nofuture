@@ -1,5 +1,5 @@
 include
-  Nofuture.S
+  Nofuture.S_IO
     with type 'a Blocking.t = 'a
      and type Scope.t = Eio.Switch.t
      and type 'a Background.t = 'a Eio.Promise.or_exn

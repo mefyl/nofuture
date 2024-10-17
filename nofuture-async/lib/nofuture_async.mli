@@ -1,5 +1,5 @@
 include
-  Nofuture.S
+  Nofuture.S_IO
     with type 'a Blocking.t = 'a Async.Deferred.t
      and type Scope.t = Async.Monitor.t
      and type 'a Background.t = 'a Async.Deferred.t

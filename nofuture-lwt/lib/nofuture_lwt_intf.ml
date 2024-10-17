@@ -1,6 +1,6 @@
 module type S = sig
   include
-    Nofuture.S
+    Nofuture.S_IO
       with type 'a Blocking.t = 'a Lwt.t
        and type Scope.t = Lwt_switch.t
        and type 'a Background.t = 'a Lwt.t

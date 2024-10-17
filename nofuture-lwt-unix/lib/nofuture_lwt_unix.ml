@@ -66,3 +66,5 @@ module Out_channel = struct
   let close = Lwt_io.close
   let write = Lwt_io.write
 end
+
+let sleep = Lwt_unix.sleep

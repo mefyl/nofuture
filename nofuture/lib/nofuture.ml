@@ -183,6 +183,12 @@ module type S = sig
     val broadcast : t -> unit
     val make : unit -> t
   end
+end
+
+module type IO = sig
+  module Blocking : sig
+    type 'a t
+  end
 
   module In_channel : sig
     type t
@@ -201,4 +207,28 @@ module type S = sig
     val close : t -> unit Blocking.t
     val write : t -> string -> unit Blocking.t
   end
+end
+
+module type TIME = sig
+  module Blocking : sig
+    type 'a t
+  end
+
+  val sleep : float -> unit Blocking.t
+end
+
+module type S_IO = sig
+  include S
+  include IO with module Blocking := Blocking
+end
+
+module type S_TIME = sig
+  include S
+  include TIME with module Blocking := Blocking
+end
+
+module type S_IO_TIME = sig
+  include S
+  include IO with module Blocking := Blocking
+  include TIME with module Blocking := Blocking
 end
