@@ -17,7 +17,7 @@ module Blocking = struct
   let ignore_m = Async.Deferred.ignore_m
   let all_unit = Async.Deferred.all_unit
 
-  module Syntax = struct
+  module Monad_infix = struct
     let ( >>= ) v f = bind v ~f
     let ( let* ) = ( >>= )
     let ( >>| ) v f = map v ~f
@@ -26,7 +26,22 @@ module Blocking = struct
     let ( and+ ) = both
   end
 
-  include Syntax
+  module Let_syntax = struct
+    let return = return
+
+    include Monad_infix
+
+    module Let_syntax = struct
+      let return = return
+      let bind = bind
+      let map = map
+      let both = both
+
+      module Open_on_rhs = struct end
+    end
+  end
+
+  include Monad_infix
 end
 
 include Blocking

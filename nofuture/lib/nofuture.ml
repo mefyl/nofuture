@@ -90,7 +90,7 @@ module type S = sig
     val ignore_m : 'a t -> unit t
     val all_unit : unit t list -> unit t
 
-    module Syntax : sig
+    module Monad_infix : sig
       (** [v >>= f] is [bind v ~f] *)
       val ( >>= ) : 'a t -> ('a -> 'b t) -> 'b t
 
@@ -110,7 +110,22 @@ module type S = sig
       val ( and+ ) : 'a t -> 'b t -> ('a * 'b) t
     end
 
-    include module type of Syntax
+    include module type of Monad_infix
+
+    module Let_syntax : sig
+      val return : 'a -> 'a t
+
+      include module type of Monad_infix
+
+      module Let_syntax : sig
+        val return : 'a -> 'a t
+        val bind : 'a t -> f:('a -> 'b t) -> 'b t
+        val map : 'a t -> f:('a -> 'b) -> 'b t
+        val both : 'a t -> 'b t -> ('a * 'b) t
+
+        module Open_on_rhs : sig end
+      end
+    end
   end
 
   include module type of Blocking with type 'a t = 'a Blocking.t

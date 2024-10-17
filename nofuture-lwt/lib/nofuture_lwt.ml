@@ -17,7 +17,7 @@ module Blocking = struct
     | [] -> return ()
     | t :: ts -> bind t ~f:(fun () -> all_unit ts)
 
-  module Syntax = struct
+  module Monad_infix = struct
     let ( >>= ) v f = bind v ~f
     let ( let* ) = ( >>= )
     let ( >>| ) v f = map v ~f
@@ -26,7 +26,22 @@ module Blocking = struct
     let ( and+ ) = both
   end
 
-  include Syntax
+  include Monad_infix
+
+  module Let_syntax = struct
+    let return = return
+
+    include Monad_infix
+
+    module Let_syntax = struct
+      let return = return
+      let bind = bind
+      let map = map
+      let both = both
+
+      module Open_on_rhs = struct end
+    end
+  end
 end
 
 include Blocking
