@@ -6,13 +6,16 @@ module Blocking = struct
   let bind = Deferred.bind
   let map = Deferred.map
   let return = Deferred.return
+  let yield = Async.Scheduler.yield
 
   let catch f catch =
     Monitor.try_with f >>= function Ok v -> return v | Error exn -> catch exn
 
   let both = Deferred.both
   let all = Deferred.all
-  let yield = Deferred.return
+  let join = Async.Deferred.join
+  let ignore_m = Async.Deferred.ignore_m
+  let all_unit = Async.Deferred.all_unit
 
   module Syntax = struct
     let ( >>= ) v f = bind v ~f

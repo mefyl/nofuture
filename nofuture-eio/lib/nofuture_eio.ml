@@ -10,6 +10,9 @@ module Blocking = struct
   let both a b = (a, b)
   let all list = list
   let yield = Eio.Fiber.yield
+  let join v = v
+  let ignore_m = ignore
+  let all_unit = ignore
 
   module Syntax = struct
     let ( >>= ) v f = bind v ~f

@@ -86,6 +86,10 @@ module type S = sig
         run at this point. *)
     val yield : unit -> unit t
 
+    val join : 'a t t -> 'a t
+    val ignore_m : 'a t -> unit t
+    val all_unit : unit t list -> unit t
+
     module Syntax : sig
       (** [v >>= f] is [bind v ~f] *)
       val ( >>= ) : 'a t -> ('a -> 'b t) -> 'b t

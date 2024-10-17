@@ -10,6 +10,12 @@ module Blocking = struct
   let both = Lwt.both
   let all = Lwt.all
   let yield = Lwt.pause
+  let join t = bind t ~f:(fun t' -> t')
+  let ignore_m t = map t ~f:(fun _ -> ())
+
+  let rec all_unit = function
+    | [] -> return ()
+    | t :: ts -> bind t ~f:(fun () -> all_unit ts)
 
   module Syntax = struct
     let ( >>= ) v f = bind v ~f
