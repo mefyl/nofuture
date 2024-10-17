@@ -6,6 +6,8 @@
   nofuture.opam
   nofuture-eio.opam
   nofuture-lwt.opam
+  nofuture-lwt-unix.opam
+  nofuture-lwt-jsoo.opam
   (alias_rec nofuture/default)
   (alias_rec nofuture-eio/default)
   (alias_rec nofuture-lwt/default)))

@@ -1,0 +1,4 @@
+(library
+ (name nofuture_lwt_jsoo)
+ (public_name nofuture-lwt-jsoo)
+ (libraries js_of_ocaml-lwt lwt nofuture nofuture-lwt))
