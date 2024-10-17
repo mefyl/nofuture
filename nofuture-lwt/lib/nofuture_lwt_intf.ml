@@ -1,9 +1,9 @@
 module type S = sig
   include
     Nofuture.S_IO
-      with type 'a Blocking.t = 'a Lwt.t
+      with type 'a Background.t = 'a Lwt.t
+       and type 'a Blocking.t = 'a Lwt.t
        and type Scope.t = Lwt_switch.t
-       and type 'a Background.t = 'a Lwt.t
 
   module In_channel : sig
     include module type of In_channel
