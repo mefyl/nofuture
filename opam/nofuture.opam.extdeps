@@ -1,0 +1,49 @@
+opam-version: "2.0"
+name: "nofuture"
+version: "0.1.0"
+synopsis: "Unified concurrency API"
+maintainer: "mefyl <mefyl@gruntech.org>"
+authors: "mefyl <mefyl@gruntech.org>"
+license: "LGPL-3.0-or-later"
+homepage: "https://gitlab.routine.co/routine/nofuture"
+bug-reports: "https://gitlab.routine.co/routine/nofuture/-/issues"
+depends: [
+  "ocamlformat" {= "0.26.1"}
+  "opam-file-format"
+  "sexplib"
+  "astring" {= "0.8.5" & with-test}
+  "base-bigarray" {= "base"}
+  "base-domains" {= "base"}
+  "base-nnp" {= "base"}
+  "base-threads" {= "base"}
+  "base-unix" {= "base"}
+  "camlp-streams" {= "5.0.1" & with-test}
+  "cmdliner" {= "1.3.0" & with-test}
+  "cppo" {= "1.7.0" & with-test}
+  "crunch" {= "3.3.1" & with-doc}
+  "csexp" {= "1.5.2" & with-test}
+  "dune" {= "3.16.0"}
+  "fmt" {= "0.9.0" & with-test}
+  "fpath" {= "0.7.3" & with-doc}
+  "host-arch-x86_64" {= "1"}
+  "host-system-other" {= "1"}
+  "logs" {= "0.7.0" & with-test}
+  "mdx" {= "2.4.1" & with-test}
+  "ocaml" {= "5.2.0"}
+  "ocaml-base-compiler" {= "5.2.0"}
+  "ocaml-config" {= "3"}
+  "ocaml-options-vanilla" {= "1"}
+  "ocaml-version" {= "3.6.9" & with-test}
+  "ocamlbuild" {= "0.15.0" & with-test}
+  "ocamlfind" {= "1.9.6" & with-test}
+  "odoc" {= "2.4.3" & with-doc}
+  "odoc-parser" {= "2.4.3" & with-doc}
+  "ptime" {= "1.2.0" & with-doc}
+  "re" {= "1.12.0" & with-test}
+  "result" {= "1.5" & with-test}
+  "seq" {= "base" & with-test}
+  "topkg" {= "1.0.7" & with-test}
+  "tyxml" {= "4.6.0" & with-doc}
+  "uutf" {= "1.0.3" & with-doc}
+]
+dev-repo: "git+https://gitlab.routine.co/routine/nofuture.git"
