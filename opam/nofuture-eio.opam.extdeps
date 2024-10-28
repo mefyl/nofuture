@@ -8,7 +8,7 @@ license: "LGPL-3.0-or-later"
 homepage: "https://gitlab.routine.co/routine/nofuture"
 bug-reports: "https://gitlab.routine.co/routine/nofuture/-/issues"
 depends: [
-  "ocamlformat" {= "0.26.1"}
+  "ocamlformat" {= "0.26.2"}
   "opam-file-format"
   "sexplib"
   "alcotest" {= "1.8.0" & with-test}
