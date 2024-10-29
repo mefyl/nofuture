@@ -10,7 +10,7 @@ bug-reports: "https://gitlab.routine.co/routine/nofuture/-/issues"
 depends: [
   "dune" {>= "3.12"}
   "lwt"
-  "nofuture-lwt"
+  "nofuture-lwt" {= version}
   "js_of_ocaml"
   "js_of_ocaml-lwt"
   "alcotest" {with-test}

@@ -35,7 +35,8 @@
  (synopsis "Async implementation of nofuture")
  (depends
   async
-  nofuture
+  (nofuture
+   (= :version))
   (alcotest :with-test)
   (ppx_here :with-test)))
 
@@ -45,7 +46,8 @@
  (depends
   (eio
    (>= 1.0))
-  nofuture
+  (nofuture
+   (= :version))
   (alcotest :with-test)
   (eio_main :with-test)
   (ppx_here :with-test)))
@@ -55,7 +57,8 @@
  (synopsis "Lwt implementation of nofuture")
  (depends
   lwt
-  nofuture
+  (nofuture
+   (= :version))
   (alcotest :with-test)
   (ppx_here :with-test)))
 
@@ -64,7 +67,8 @@
  (synopsis "Lwt implementation of nofuture for Unix")
  (depends
   lwt
-  nofuture-lwt
+  (nofuture-lwt
+   (= :version))
   (alcotest :with-test)
   (ppx_here :with-test)))
 
@@ -73,7 +77,8 @@
  (synopsis "Lwt implementation of nofuture for js_of_ocaml")
  (depends
   lwt
-  nofuture-lwt
+  (nofuture-lwt
+   (= :version))
   js_of_ocaml
   js_of_ocaml-lwt
   (alcotest :with-test)
