@@ -1,4 +1,3 @@
 (library
  (name nofuture)
- (public_name nofuture)
- (libraries mtime))
+ (public_name nofuture))

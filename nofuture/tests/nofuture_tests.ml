@@ -1,8 +1,6 @@
 module Make (Future : Nofuture.S) : sig
   val check : string -> ((unit -> unit Future.t) -> unit -> unit) -> unit
 end = struct
-  (* type impl = { sleep : Mtime.t -> unit Future.t } *)
-
   open Future
 
   module Blocking = struct
