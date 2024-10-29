@@ -47,6 +47,7 @@
    (>= 1.0))
   nofuture
   (alcotest :with-test)
+  (eio_main :with-test)
   (ppx_here :with-test)))
 
 (package
