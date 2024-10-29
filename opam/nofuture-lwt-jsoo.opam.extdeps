@@ -34,6 +34,8 @@ depends: [
   "host-system-other" {= "1"}
   "js_of_ocaml" {= "5.8.2"}
   "js_of_ocaml-compiler" {= "5.8.2"}
+  "js_of_ocaml-lwt" {= "5.8.2"}
+  "js_of_ocaml-ppx" {= "5.8.2"}
   "lwt" {= "5.7.0"}
   "menhir" {= "20240715"}
   "menhirCST" {= "20240715"}
