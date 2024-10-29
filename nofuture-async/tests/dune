@@ -1,4 +1,6 @@
-(test
- (name test)
- (package nofuture-lwt)
- (libraries async nofuture_async nofuture_tests))
+; Async support is put on hold for now
+
+; (test
+;  (name test)
+;  (package nofuture-lwt)
+;  (libraries async nofuture_async nofuture_tests))
