@@ -74,5 +74,6 @@
   lwt
   nofuture-lwt
   js_of_ocaml
+  js_of_ocaml-lwt
   (alcotest :with-test)
   (ppx_here :with-test)))
