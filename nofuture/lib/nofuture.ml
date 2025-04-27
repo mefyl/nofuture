@@ -77,7 +77,8 @@ module type S = sig
         The [comuptations] MAY be run concurrently.*)
     val all : 'a t list -> 'a list t
 
-    (** [catch f handle] runs [f] and handles escaping exception with [handle]. *)
+    (** [catch f handle] runs [f] and handles escaping exception with [handle].
+    *)
     val catch : (unit -> 'a t) -> (exn -> 'a t) -> 'a t
 
     (** [yield ()] is a blocking computation that immediately finishes.
@@ -166,7 +167,8 @@ module type S = sig
   val defer : Scope.t -> (unit -> 'a t) -> 'a Background.t
 
   (** [await background] transforms [background] in a blocking computation,
-      possibly blocking immediately until it is done depending on the backend. *)
+      possibly blocking immediately until it is done depending on the backend.
+  *)
   val await : 'a Background.t -> 'a Blocking.t
 
   module Mutex : sig

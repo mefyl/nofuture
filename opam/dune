@@ -1,0 +1,929 @@
+(alias
+ (name default)
+ (deps))
+
+(rule
+ (target nofuture.%{version:nofuture}.opam)
+ (deps
+  (:opam ../nofuture.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-ios.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-ios
+    --input
+    %{dep:../nofuture.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-ios.%{version:nofuture}.opam)
+ (deps
+  (:opam nofuture-ios.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-macos.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-macos
+    --input
+    %{dep:../nofuture.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-macos.%{version:nofuture}.opam)
+ (deps
+  (:opam nofuture-macos.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-windows.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-windows
+    --input
+    %{dep:../nofuture.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-windows.%{version:nofuture}.opam)
+ (deps
+  (:opam nofuture-windows.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-android.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-android
+    --input
+    %{dep:../nofuture.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-android.%{version:nofuture}.opam)
+ (deps
+  (:opam nofuture-android.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(alias
+ (name default)
+ (deps))
+
+(rule
+ (target nofuture-async.%{version:nofuture-async}.opam)
+ (deps
+  (:opam ../nofuture-async.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-async-ios.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-ios
+    --input
+    %{dep:../nofuture-async.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-async-ios.%{version:nofuture-async}.opam)
+ (deps
+  (:opam nofuture-async-ios.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-async-macos.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-macos
+    --input
+    %{dep:../nofuture-async.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-async-macos.%{version:nofuture-async}.opam)
+ (deps
+  (:opam nofuture-async-macos.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-async-windows.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-windows
+    --input
+    %{dep:../nofuture-async.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-async-windows.%{version:nofuture-async}.opam)
+ (deps
+  (:opam nofuture-async-windows.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-async-android.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-android
+    --input
+    %{dep:../nofuture-async.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-async-android.%{version:nofuture-async}.opam)
+ (deps
+  (:opam nofuture-async-android.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(alias
+ (name default)
+ (deps))
+
+(rule
+ (target nofuture-eio.%{version:nofuture-eio}.opam)
+ (deps
+  (:opam ../nofuture-eio.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-eio-ios.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-ios
+    --input
+    %{dep:../nofuture-eio.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-eio-ios.%{version:nofuture-eio}.opam)
+ (deps
+  (:opam nofuture-eio-ios.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-eio-macos.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-macos
+    --input
+    %{dep:../nofuture-eio.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-eio-macos.%{version:nofuture-eio}.opam)
+ (deps
+  (:opam nofuture-eio-macos.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-eio-windows.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-windows
+    --input
+    %{dep:../nofuture-eio.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-eio-windows.%{version:nofuture-eio}.opam)
+ (deps
+  (:opam nofuture-eio-windows.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-eio-android.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-android
+    --input
+    %{dep:../nofuture-eio.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-eio-android.%{version:nofuture-eio}.opam)
+ (deps
+  (:opam nofuture-eio-android.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(alias
+ (name default)
+ (deps))
+
+(rule
+ (target nofuture-lwt.%{version:nofuture-lwt}.opam)
+ (deps
+  (:opam ../nofuture-lwt.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-ios.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-ios
+    --input
+    %{dep:../nofuture-lwt.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-ios.%{version:nofuture-lwt}.opam)
+ (deps
+  (:opam nofuture-lwt-ios.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-macos.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-macos
+    --input
+    %{dep:../nofuture-lwt.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-macos.%{version:nofuture-lwt}.opam)
+ (deps
+  (:opam nofuture-lwt-macos.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-windows.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-windows
+    --input
+    %{dep:../nofuture-lwt.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-windows.%{version:nofuture-lwt}.opam)
+ (deps
+  (:opam nofuture-lwt-windows.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-android.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-android
+    --input
+    %{dep:../nofuture-lwt.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-android.%{version:nofuture-lwt}.opam)
+ (deps
+  (:opam nofuture-lwt-android.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(alias
+ (name default)
+ (deps))
+
+(rule
+ (target nofuture-lwt-jsoo.%{version:nofuture-lwt-jsoo}.opam)
+ (deps
+  (:opam ../nofuture-lwt-jsoo.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-jsoo-ios.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-ios
+    --input
+    %{dep:../nofuture-lwt-jsoo.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-jsoo-ios.%{version:nofuture-lwt-jsoo}.opam)
+ (deps
+  (:opam nofuture-lwt-jsoo-ios.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-jsoo-macos.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-macos
+    --input
+    %{dep:../nofuture-lwt-jsoo.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-jsoo-macos.%{version:nofuture-lwt-jsoo}.opam)
+ (deps
+  (:opam nofuture-lwt-jsoo-macos.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-jsoo-windows.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-windows
+    --input
+    %{dep:../nofuture-lwt-jsoo.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-jsoo-windows.%{version:nofuture-lwt-jsoo}.opam)
+ (deps
+  (:opam nofuture-lwt-jsoo-windows.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-jsoo-android.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-android
+    --input
+    %{dep:../nofuture-lwt-jsoo.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-jsoo-android.%{version:nofuture-lwt-jsoo}.opam)
+ (deps
+  (:opam nofuture-lwt-jsoo-android.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(alias
+ (name default)
+ (deps))
+
+(rule
+ (target nofuture-lwt-unix.%{version:nofuture-lwt-unix}.opam)
+ (deps
+  (:opam ../nofuture-lwt-unix.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-unix-ios.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-ios
+    --input
+    %{dep:../nofuture-lwt-unix.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-unix-ios.%{version:nofuture-lwt-unix}.opam)
+ (deps
+  (:opam nofuture-lwt-unix-ios.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-unix-macos.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-macos
+    --input
+    %{dep:../nofuture-lwt-unix.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-unix-macos.%{version:nofuture-lwt-unix}.opam)
+ (deps
+  (:opam nofuture-lwt-unix-macos.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-unix-windows.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-windows
+    --input
+    %{dep:../nofuture-lwt-unix.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-unix-windows.%{version:nofuture-lwt-unix}.opam)
+ (deps
+  (:opam nofuture-lwt-unix-windows.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-unix-android.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    rewrite-android
+    --input
+    %{dep:../nofuture-lwt-unix.opam}
+    --cross
+    nofuture,nofuture-async,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-unix-android.%{version:nofuture-lwt-unix}.opam)
+ (deps
+  (:opam nofuture-lwt-unix-android.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))

@@ -1,0 +1,16 @@
+opam-version: "2.0"
+version: "0.1.1"
+synopsis: "Unified concurrency API"
+maintainer: ["mefyl <mefyl@gruntech.org>"]
+authors: ["mefyl <mefyl@gruntech.org>"]
+license: "LGPL-3.0-or-later"
+homepage: "https://gitlab.routine.co/routine/nofuture"
+bug-reports: "https://gitlab.routine.co/routine/nofuture/-/issues"
+depends: [
+  "dune" {>= "3.12"}
+]
+build: [
+  ["dune" "subst"] {dev}
+  ["dune" "build" "-x" "android" "-p" "nofuture" "-j" jobs "@install"]
+]
+dev-repo: "git+https://gitlab.routine.co/routine/nofuture.git"

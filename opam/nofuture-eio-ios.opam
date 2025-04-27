@@ -1,0 +1,18 @@
+opam-version: "2.0"
+version: "0.1.1"
+synopsis: "Eio implementation of nofuture"
+maintainer: ["mefyl <mefyl@gruntech.org>"]
+authors: ["mefyl <mefyl@gruntech.org>"]
+license: "LGPL-3.0-or-later"
+homepage: "https://gitlab.routine.co/routine/nofuture"
+bug-reports: "https://gitlab.routine.co/routine/nofuture/-/issues"
+depends: [
+  "dune" {>= "3.12"}
+  "eio" {>= "1.0"}
+  "nofuture-ios" {= version}
+]
+build: [
+  ["dune" "subst"] {dev}
+  ["dune" "build" "-x" "ios" "-p" "nofuture-eio" "-j" jobs "@install"]
+]
+dev-repo: "git+https://gitlab.routine.co/routine/nofuture.git"
