@@ -1,2 +1,5 @@
+variables:
+  PACKAGES: "linux-headers"
+
 include:
   - local: '/.logistic/ci/dune/.gitlab-ci.yml'
