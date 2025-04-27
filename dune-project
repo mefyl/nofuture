@@ -31,16 +31,6 @@
   (odoc :with-doc)))
 
 (package
- (name nofuture-async)
- (synopsis "Async implementation of nofuture")
- (depends
-  async
-  (nofuture
-   (= :version))
-  (alcotest :with-test)
-  (ppx_here :with-test)))
-
-(package
  (name nofuture-eio)
  (synopsis "Eio implementation of nofuture")
  (depends
