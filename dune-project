@@ -10,7 +10,7 @@
 
 (authors "mefyl <mefyl@gruntech.org>")
 
-(version 0.1.1)
+(version 0.1.2)
 
 (homepage https://gitlab.routine.co/routine/nofuture)
 
