@@ -13,6 +13,7 @@ depends: [
   "nofuture-lwt" {= version}
   "js_of_ocaml"
   "js_of_ocaml-lwt"
+  "ocaml" {>= "5.0"}
   "alcotest" {with-test}
   "ppx_here" {with-test}
   "odoc" {with-doc}

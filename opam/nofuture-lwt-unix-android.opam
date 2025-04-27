@@ -10,6 +10,7 @@ depends: [
   "dune" {>= "3.12"}
   "lwt-android"
   "nofuture-lwt-android" {= version}
+  "ocaml-android" {>= "5.0"}
 ]
 build: [
   ["dune" "subst"] {dev}

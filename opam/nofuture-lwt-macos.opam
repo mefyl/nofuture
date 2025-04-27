@@ -10,6 +10,7 @@ depends: [
   "dune" {>= "3.12"}
   "lwt-macos"
   "nofuture-macos" {= version}
+  "ocaml-macos" {>= "5.0"}
 ]
 build: [
   ["dune" "subst"] {dev}

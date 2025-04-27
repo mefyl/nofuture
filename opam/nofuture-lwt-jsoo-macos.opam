@@ -12,6 +12,7 @@ depends: [
   "nofuture-lwt-macos" {= version}
   "js_of_ocaml"
   "js_of_ocaml-lwt"
+  "ocaml-macos" {>= "5.0"}
 ]
 build: [
   ["dune" "subst"] {dev}

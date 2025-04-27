@@ -28,6 +28,8 @@
  (synopsis "Unified concurrency API")
  (depends
   (mdx :with-test)
+  (ocaml
+   (>= 5.0))
   (odoc :with-doc)))
 
 (package
@@ -38,6 +40,8 @@
    (>= 1.0))
   (nofuture
    (= :version))
+  (ocaml
+   (>= 5.0))
   (alcotest :with-test)
   (eio_main :with-test)
   (ppx_here :with-test)))
@@ -49,6 +53,8 @@
   lwt
   (nofuture
    (= :version))
+  (ocaml
+   (>= 5.0))
   (alcotest :with-test)
   (ppx_here :with-test)))
 
@@ -59,6 +65,8 @@
   lwt
   (nofuture-lwt
    (= :version))
+  (ocaml
+   (>= 5.0))
   (alcotest :with-test)
   (ppx_here :with-test)))
 
@@ -71,5 +79,7 @@
    (= :version))
   js_of_ocaml
   js_of_ocaml-lwt
+  (ocaml
+   (>= 5.0))
   (alcotest :with-test)
   (ppx_here :with-test)))

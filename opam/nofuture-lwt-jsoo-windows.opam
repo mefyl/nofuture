@@ -12,6 +12,7 @@ depends: [
   "nofuture-lwt-windows" {= version}
   "js_of_ocaml"
   "js_of_ocaml-lwt"
+  "ocaml-windows" {>= "5.0"}
 ]
 build: [
   ["dune" "subst"] {dev}

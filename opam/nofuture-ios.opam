@@ -8,6 +8,7 @@ homepage: "https://gitlab.routine.co/routine/nofuture"
 bug-reports: "https://gitlab.routine.co/routine/nofuture/-/issues"
 depends: [
   "dune" {>= "3.12"}
+  "ocaml-ios" {>= "5.0"}
 ]
 build: [
   ["dune" "subst"] {dev}

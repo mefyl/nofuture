@@ -12,6 +12,7 @@ depends: [
   "nofuture-lwt-android" {= version}
   "js_of_ocaml"
   "js_of_ocaml-lwt"
+  "ocaml-android" {>= "5.0"}
 ]
 build: [
   ["dune" "subst"] {dev}
