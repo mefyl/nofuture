@@ -1,0 +1,52 @@
+(version 6.3.2)
+
+(build
+ (all_platforms
+  ((action
+    (progn
+     (run dune build -p %{pkg-self:name} -j %{jobs} @install)
+     (run
+      cmdliner
+      install
+      tool-support
+      --update-opam-install=%{pkg-self:name}.install
+      (when
+       (catch_undefined_var (<> %{os_family} windows) false)
+       _build/install/default/bin/js_of_ocaml)
+      (when
+       (catch_undefined_var (= %{os_family} windows) false)
+       _build/install/default/bin/js_of_ocaml.exe:js_of_ocaml)
+      _build/cmdliner-install)
+     (run
+      cmdliner
+      install
+      tool-support
+      --update-opam-install=%{pkg-self:name}.install
+      (when
+       (catch_undefined_var (<> %{os_family} windows) false)
+       _build/install/default/bin/jsoo_minify)
+      (when
+       (catch_undefined_var (= %{os_family} windows) false)
+       _build/install/default/bin/jsoo_minify.exe:jsoo_minify)
+      _build/cmdliner-install))))))
+
+(depends
+ (all_platforms
+  (dune
+   ocaml
+   ppxlib
+   ocaml-compiler-libs
+   cmdliner
+   sedlex
+   menhir
+   menhirLib
+   menhirSdk
+   yojson
+   ocamlfind)))
+
+(source
+ (fetch
+  (url
+   https://github.com/ocsigen/js_of_ocaml/releases/download/6.3.2/js_of_ocaml-6.3.2.tbz)
+  (checksum
+   sha512=3cd59bd4395a3ac83f546ae20259b026b61cea33e3ef35ab0560ce0baadaf50ebefb704dba28246a3c8b1ce3ff6d8efdc3e514dcbd728af0afb2e2a2c2032620)))
