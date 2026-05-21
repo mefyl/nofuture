@@ -1,7 +1,3 @@
-(alias
- (name default)
- (deps))
-
 (rule
  (target nofuture.%{version:nofuture}.opam)
  (deps
@@ -25,7 +21,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-ios
     --input
     %{dep:../nofuture.opam}
@@ -59,7 +55,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-macos
     --input
     %{dep:../nofuture.opam}
@@ -93,7 +89,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-windows
     --input
     %{dep:../nofuture.opam}
@@ -127,7 +123,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-android
     --input
     %{dep:../nofuture.opam}
@@ -153,10 +149,6 @@
      "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
      -n1)))))
 
-(alias
- (name default)
- (deps))
-
 (rule
  (target nofuture-eio.%{version:nofuture-eio}.opam)
  (deps
@@ -180,7 +172,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-ios
     --input
     %{dep:../nofuture-eio.opam}
@@ -214,7 +206,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-macos
     --input
     %{dep:../nofuture-eio.opam}
@@ -248,7 +240,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-windows
     --input
     %{dep:../nofuture-eio.opam}
@@ -282,7 +274,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-android
     --input
     %{dep:../nofuture-eio.opam}
@@ -308,10 +300,6 @@
      "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
      -n1)))))
 
-(alias
- (name default)
- (deps))
-
 (rule
  (target nofuture-lwt.%{version:nofuture-lwt}.opam)
  (deps
@@ -335,7 +323,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-ios
     --input
     %{dep:../nofuture-lwt.opam}
@@ -369,7 +357,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-macos
     --input
     %{dep:../nofuture-lwt.opam}
@@ -403,7 +391,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-windows
     --input
     %{dep:../nofuture-lwt.opam}
@@ -437,7 +425,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-android
     --input
     %{dep:../nofuture-lwt.opam}
@@ -463,10 +451,6 @@
      "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
      -n1)))))
 
-(alias
- (name default)
- (deps))
-
 (rule
  (target nofuture-lwt-jsoo.%{version:nofuture-lwt-jsoo}.opam)
  (deps
@@ -490,7 +474,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-ios
     --input
     %{dep:../nofuture-lwt-jsoo.opam}
@@ -524,7 +508,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-macos
     --input
     %{dep:../nofuture-lwt-jsoo.opam}
@@ -558,7 +542,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-windows
     --input
     %{dep:../nofuture-lwt-jsoo.opam}
@@ -592,7 +576,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-android
     --input
     %{dep:../nofuture-lwt-jsoo.opam}
@@ -618,10 +602,6 @@
      "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
      -n1)))))
 
-(alias
- (name default)
- (deps))
-
 (rule
  (target nofuture-lwt-unix.%{version:nofuture-lwt-unix}.opam)
  (deps
@@ -645,7 +625,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-ios
     --input
     %{dep:../nofuture-lwt-unix.opam}
@@ -679,7 +659,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-macos
     --input
     %{dep:../nofuture-lwt-unix.opam}
@@ -713,7 +693,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-windows
     --input
     %{dep:../nofuture-lwt-unix.opam}
@@ -747,7 +727,7 @@
   (with-stdout-to
    %{target}
    (run
-    %{dep:../.logistic/ci/dune/dune_sak.exe}
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
     rewrite-android
     --input
     %{dep:../nofuture-lwt-unix.opam}

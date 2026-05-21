@@ -1,8 +1,8 @@
 .PHONY: opam
 MAKEFILE=$(abspath $(firstword $(MAKEFILE_LIST)))
 DIR=$(patsubst %/,%,$(dir $(MAKEFILE)))
-OCAML_VERSION ?= $(shell ocamlc --version)
-DUNE=dune
+DUNE := dune
+WORKSPACE_OPT := $(if $(WORKSPACE),--workspace dune-workspace.$(WORKSPACE),)
 
 -include Makefile.ci
 
@@ -18,36 +18,31 @@ endif
 build:
 	if test -d /root/node_modules; then ln -s /root/node_modules; fi
 	$(DUNE) subst
-	$(DUNE) build --profile release $(if ${DUNE_PACKAGES},--only-packages="${DUNE_PACKAGES}") --ignore-promoted-rules @install
+	time $(DUNE) build --profile release $(WORKSPACE_OPT) --ignore-promoted-rules @install
 
 lint:
-	$(DUNE) build @fmt
+	time $(DUNE) build $(WORKSPACE_OPT) @fmt
+	time $(DUNE) build --profile pedantic $(WORKSPACE_OPT)
+	# Check there is no diff in generated files, like *.opam
+	git diff --exit-code
+
 
 check:
 	if test -d /root/node_modules; then ln -s /root/node_modules; fi
 	$(DUNE) subst
-	$(DUNE) runtest $(if ${DUNE_PACKAGES},--only-packages="${DUNE_PACKAGES}")
+	time $(DUNE) runtest $(WORKSPACE_OPT)
 
 package:
 	$(DUNE) subst
-	$(DUNE) install $(if ${DUNE_PACKAGES},--only-packages="${DUNE_PACKAGES}") --prefix=_install
+	$(DUNE) install $(WORKSPACE_OPT) --prefix=_install
 	if ! test -e Dockerfile; then echo "FROM alpine:3.21.0" > Dockerfile; fi
 	sed '1aADD _install/ /usr/' Dockerfile > Dockerfile.package
-	docker buildx build --cache-to type=inline -f "Dockerfile.package" . -t "$(IMAGE):$$(git describe --always)"
-	docker push "$(IMAGE):$$(git describe --always)"
-	docker tag "$(IMAGE):$$(git describe --always)" "$(IMAGE):$$SLUG"
+	docker buildx build --cache-to type=inline -f "Dockerfile.package" . -t "$(IMAGE):$$(git describe --always --abbrev=7)"
+	docker push "$(IMAGE):$$(git describe --always --abbrev=7)"
+	docker tag "$(IMAGE):$$(git describe --always --abbrev=7)" "$(IMAGE):$$SLUG"
 	docker push "$(IMAGE):$$SLUG"
-	echo "Pushed Docker image: \"$(IMAGE):$$(git describe --always)\"" 
-	docker rmi "$(IMAGE):$$(git describe --always)" "$(IMAGE):$$SLUG"
-
-image/%:
-	if docker buildx inspect builder; then \
-		CACHE="--builder=builder --cache-to type=inline --push "; \
-	fi; \
-	if test -n "$(FROM_SCRATCH)"; then CACHE="--no-cache"; \
-	else CACHE="$$CACHE--cache-from type=registry,ref=$(IMAGE)/$*"; \
-	fi; \
-	docker buildx build -f "Dockerfile.$*" . --tag "$(IMAGE)/$*" $$CACHE --build-arg PACKAGES="$(PACKAGES)"
+	echo "Pushed Docker image: \"$(IMAGE):$$(git describe --always --abbrev=7)\"" 
+	docker rmi "$(IMAGE):$$(git describe --always --abbrev=7)" "$(IMAGE):$$SLUG"
 
 opam:
 	$(DIR)/opam-publish

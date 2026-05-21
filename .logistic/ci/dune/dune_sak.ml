@@ -11,14 +11,14 @@ let parse path =
 
 let pp_file = OpamPrinter.FullPos.format_opamfile
 
-let path =
+let path_ =
   let realpath path =
     let open Stdlib.Filename in
     if is_relative path then concat (Stdlib.Sys.getcwd ()) path else path
   in
   Cmdliner.Arg.conv (Fn.compose Result.return realpath, Fmt.string)
 
-let input = Cmdliner.Arg.(opt (some path) None & info [ "i"; "input" ])
+let input = Cmdliner.Arg.(opt (some path_) None & info [ "i"; "input" ])
 
 let toolchain =
   Cmdliner.Arg.(
@@ -62,7 +62,7 @@ let run command =
   | _ ->
     Result.fail
       (Stdlib.Format.asprintf "%a failed:@ @[%s@]"
-         Fmt.(array string)
+         Fmt.(array ~sep:sp string)
          command error)
 
 let promote_until_clean =
@@ -90,6 +90,13 @@ let () =
   let open Cmdliner in
   let generate =
     let generate name local cross_both cross_exclude cross_only =
+      let cross_enabled =
+        not
+          (List.is_empty cross_both
+          && List.is_empty cross_exclude
+          && List.is_empty cross_only
+          && List.is_empty local)
+      in
       let* repository, packages =
         let* description = run [| "dune"; "describe"; "opam-files" |] in
         match Sexplib.Sexp.parse description with
@@ -177,7 +184,8 @@ let () =
                       List
                         [
                           Atom "run";
-                          Atom "%{dep:../.logistic/ci/dune/dune_sak.exe}";
+                          Atom
+                            "%{workspace_root}/.logistic/ci/dune/dune_sak.exe";
                           Atom ("rewrite-" ^ toolchain);
                           Atom "--input";
                           Atom ("%{dep:../" ^ package ^ ".opam}");
@@ -194,17 +202,13 @@ let () =
                 ];
             ]
         in
-
-        List
-          [
-            Atom "alias";
-            List [ Atom "name"; Atom "default" ];
-            List [ Atom "deps" ];
-          ]
-        :: opam_rule ~source:"../" ""
-        :: List.concat
-             (List.map cross_toolchains ~f:(fun toolchain ->
-                  [ cross_rule toolchain; opam_rule ("-" ^ toolchain) ]))
+        let host_opam_rule = opam_rule ~source:"../" "" in
+        if cross_enabled then
+          host_opam_rule
+          :: List.concat
+               (List.map cross_toolchains ~f:(fun toolchain ->
+                    [ cross_rule toolchain; opam_rule ("-" ^ toolchain) ]))
+        else [ host_opam_rule ]
       in
       List.map ~f:generate packages
       |> List.concat
@@ -295,6 +299,7 @@ let () =
                    pelem =
                      pin_depend "ocamlformat" "0.27.0"
                      :: { pelem = String "opam-file-format"; pos }
+                     :: { pelem = String "ocaml-index"; pos }
                      :: { pelem = String "sexplib"; pos }
                      :: l;
                  }))
@@ -373,10 +378,10 @@ let () =
                   as pin ->
                   rewrite_dependency package
                   |> List.map ~f:(fun package ->
-                         {
-                           pin with
-                           pelem = List { args with pelem = [ package; url ] };
-                         })
+                      {
+                        pin with
+                        pelem = List { args with pelem = [ package; url ] };
+                      })
                   |> Result.return
                 | { pos; _ } ->
                   Result.fail (Some pos, "unrecognized pin_depends")
@@ -416,7 +421,7 @@ let () =
           | Option (value, options) ->
             rewrite_dependency value
             |> List.map ~f:(fun value ->
-                   { item with pelem = Option (value, options) })
+                { item with pelem = Option (value, options) })
           | _ -> [ item ]
         else []
       and rewrite_command = function
