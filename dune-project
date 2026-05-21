@@ -83,3 +83,16 @@
    (>= 5.0))
   (alcotest :with-test)
   (ppx_here :with-test)))
+
+(package
+ (name nofuture-lwt-direct)
+ (synopsis "Lwt direct style implementation of nofuture")
+ (depends
+  lwt
+  lwt_direct
+  (nofuture-lwt
+   (= :version))
+  (ocaml
+   (>= 5.0))
+  (alcotest :with-test)
+  (ppx_here :with-test)))

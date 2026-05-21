@@ -1,0 +1,18 @@
+(version 6.0.0)
+
+(build
+ (all_platforms
+  ((action
+    (progn
+     (when %{pkg-self:dev} (run dune subst))
+     (run dune build -p %{pkg-self:name} -j %{jobs} @install))))))
+
+(depends
+ (all_platforms
+  (dune ocaml base-unix lwt)))
+
+(source
+ (fetch
+  (url https://github.com/ocsigen/lwt/archive/refs/tags/6.0.0.tar.gz)
+  (checksum
+   sha512=6d2f4866e06601f9e7e43ac6378f05a3ea915c94548d5a6c96e2fb2adc2c6cff233ffa56862ca7be809c2d2114ed9335c22fb7d768adf7fae5460bb52de3f938)))

@@ -1,0 +1,4 @@
+(test
+ (name test)
+ (package nofuture-lwt-direct)
+ (libraries lwt.unix nofuture_lwt_direct nofuture_tests))

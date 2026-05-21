@@ -1,0 +1,4 @@
+(library
+ (name nofuture_lwt_direct)
+ (public_name nofuture-lwt-direct)
+ (libraries nofuture lwt lwt_direct))
