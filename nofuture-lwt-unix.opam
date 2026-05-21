@@ -12,8 +12,6 @@ depends: [
   "lwt"
   "nofuture-lwt" {= version}
   "ocaml" {>= "5.0"}
-  "alcotest" {with-test}
-  "ppx_here" {with-test}
   "odoc" {with-doc}
 ]
 build: [

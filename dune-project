@@ -66,9 +66,7 @@
   (nofuture-lwt
    (= :version))
   (ocaml
-   (>= 5.0))
-  (alcotest :with-test)
-  (ppx_here :with-test)))
+   (>= 5.0))))
 
 (package
  (name nofuture-lwt-jsoo)
@@ -80,9 +78,7 @@
   js_of_ocaml
   js_of_ocaml-lwt
   (ocaml
-   (>= 5.0))
-  (alcotest :with-test)
-  (ppx_here :with-test)))
+   (>= 5.0))))
 
 (package
  (name nofuture-lwt-direct)
@@ -96,3 +92,16 @@
    (>= 5.0))
   (alcotest :with-test)
   (ppx_here :with-test)))
+
+(package
+ (name nofuture-lwt-direct-unix)
+ (synopsis "Lwt direct style implementation of nofuture for Unix")
+ (depends
+  lwt
+  lwt_direct
+  (nofuture-lwt-direct
+   (= :version))
+  (nofuture-lwt-unix
+   (= :version))
+  (ocaml
+   (>= 5.0))))

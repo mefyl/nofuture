@@ -26,7 +26,7 @@
     --input
     %{dep:../nofuture.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -60,7 +60,7 @@
     --input
     %{dep:../nofuture.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -94,7 +94,7 @@
     --input
     %{dep:../nofuture.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -128,7 +128,7 @@
     --input
     %{dep:../nofuture.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -177,7 +177,7 @@
     --input
     %{dep:../nofuture-eio.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -211,7 +211,7 @@
     --input
     %{dep:../nofuture-eio.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -245,7 +245,7 @@
     --input
     %{dep:../nofuture-eio.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -279,7 +279,7 @@
     --input
     %{dep:../nofuture-eio.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -328,7 +328,7 @@
     --input
     %{dep:../nofuture-lwt.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -362,7 +362,7 @@
     --input
     %{dep:../nofuture-lwt.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -396,7 +396,7 @@
     --input
     %{dep:../nofuture-lwt.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -430,7 +430,7 @@
     --input
     %{dep:../nofuture-lwt.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -440,6 +440,312 @@
  (target nofuture-lwt-android.%{version:nofuture-lwt}.opam)
  (deps
   (:opam nofuture-lwt-android.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-direct.%{version:nofuture-lwt-direct}.opam)
+ (deps
+  (:opam ../nofuture-lwt-direct.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-direct-ios.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
+    rewrite-ios
+    --input
+    %{dep:../nofuture-lwt-direct.opam}
+    --cross
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-direct-ios.%{version:nofuture-lwt-direct}.opam)
+ (deps
+  (:opam nofuture-lwt-direct-ios.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-direct-macos.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
+    rewrite-macos
+    --input
+    %{dep:../nofuture-lwt-direct.opam}
+    --cross
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-direct-macos.%{version:nofuture-lwt-direct}.opam)
+ (deps
+  (:opam nofuture-lwt-direct-macos.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-direct-windows.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
+    rewrite-windows
+    --input
+    %{dep:../nofuture-lwt-direct.opam}
+    --cross
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-direct-windows.%{version:nofuture-lwt-direct}.opam)
+ (deps
+  (:opam nofuture-lwt-direct-windows.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-direct-android.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
+    rewrite-android
+    --input
+    %{dep:../nofuture-lwt-direct.opam}
+    --cross
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target nofuture-lwt-direct-android.%{version:nofuture-lwt-direct}.opam)
+ (deps
+  (:opam nofuture-lwt-direct-android.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-direct-unix.%{version:nofuture-lwt-direct-unix}.opam)
+ (deps
+  (:opam ../nofuture-lwt-direct-unix.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-direct-unix-ios.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
+    rewrite-ios
+    --input
+    %{dep:../nofuture-lwt-direct-unix.opam}
+    --cross
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target
+  nofuture-lwt-direct-unix-ios.%{version:nofuture-lwt-direct-unix}.opam)
+ (deps
+  (:opam nofuture-lwt-direct-unix-ios.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-direct-unix-macos.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
+    rewrite-macos
+    --input
+    %{dep:../nofuture-lwt-direct-unix.opam}
+    --cross
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target
+  nofuture-lwt-direct-unix-macos.%{version:nofuture-lwt-direct-unix}.opam)
+ (deps
+  (:opam nofuture-lwt-direct-unix-macos.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-direct-unix-windows.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
+    rewrite-windows
+    --input
+    %{dep:../nofuture-lwt-direct-unix.opam}
+    --cross
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target
+  nofuture-lwt-direct-unix-windows.%{version:nofuture-lwt-direct-unix}.opam)
+ (deps
+  (:opam nofuture-lwt-direct-unix-windows.opam))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (cat %{opam})
+    (run
+     git
+     log
+     "--pretty=url { src: \"git://git@gitlab.routine.co:routine/nofuture#%H\" }"
+     -n1)))))
+
+(rule
+ (target nofuture-lwt-direct-unix-android.opam)
+ (mode
+  (promote (until-clean)))
+ (action
+  (with-stdout-to
+   %{target}
+   (run
+    %{workspace_root}/.logistic/ci/dune/dune_sak.exe
+    rewrite-android
+    --input
+    %{dep:../nofuture-lwt-direct-unix.opam}
+    --cross
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    --cross-both
+    bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
+    --cross-exclude
+    ""))))
+
+(rule
+ (target
+  nofuture-lwt-direct-unix-android.%{version:nofuture-lwt-direct-unix}.opam)
+ (deps
+  (:opam nofuture-lwt-direct-unix-android.opam))
  (action
   (with-stdout-to
    %{target}
@@ -479,7 +785,7 @@
     --input
     %{dep:../nofuture-lwt-jsoo.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -513,7 +819,7 @@
     --input
     %{dep:../nofuture-lwt-jsoo.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -547,7 +853,7 @@
     --input
     %{dep:../nofuture-lwt-jsoo.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -581,7 +887,7 @@
     --input
     %{dep:../nofuture-lwt-jsoo.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -630,7 +936,7 @@
     --input
     %{dep:../nofuture-lwt-unix.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -664,7 +970,7 @@
     --input
     %{dep:../nofuture-lwt-unix.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -698,7 +1004,7 @@
     --input
     %{dep:../nofuture-lwt-unix.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
@@ -732,7 +1038,7 @@
     --input
     %{dep:../nofuture-lwt-unix.opam}
     --cross
-    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
+    nofuture,nofuture-eio,nofuture-lwt,nofuture-lwt-direct,nofuture-lwt-direct-unix,nofuture-lwt-jsoo,nofuture-lwt-unix,base,base64,cohttp-lwt,ezjsonm,fmt,hlist,logs,lwt,ptime,sexplib,uri
     --cross-both
     bake,fmt,landmarks-ppx,ppx_deriving,ppx_hash,ppx_here,semver2
     --cross-exclude
