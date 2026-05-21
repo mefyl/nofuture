@@ -11,14 +11,14 @@ let parse path =
 
 let pp_file = OpamPrinter.FullPos.format_opamfile
 
-let path =
+let path_ =
   let realpath path =
     let open Stdlib.Filename in
     if is_relative path then concat (Stdlib.Sys.getcwd ()) path else path
   in
   Cmdliner.Arg.conv (Fn.compose Result.return realpath, Fmt.string)
 
-let input = Cmdliner.Arg.(opt (some path) None & info [ "i"; "input" ])
+let input = Cmdliner.Arg.(opt (some path_) None & info [ "i"; "input" ])
 
 let toolchain =
   Cmdliner.Arg.(
@@ -62,7 +62,7 @@ let run command =
   | _ ->
     Result.fail
       (Stdlib.Format.asprintf "%a failed:@ @[%s@]"
-         Fmt.(array string)
+         Fmt.(array ~sep:sp string)
          command error)
 
 let promote_until_clean =
@@ -275,12 +275,12 @@ let () =
                     extdeps_rule None;
                   ]
                  :: List.map cross_toolchains ~f:(fun toolchain ->
-                        [
-                          cross_rule toolchain;
-                          opam_rule ("-" ^ toolchain);
-                          locked_rule ("-" ^ toolchain);
-                          extdeps_rule (Some toolchain);
-                        ])));
+                     [
+                       cross_rule toolchain;
+                       opam_rule ("-" ^ toolchain);
+                       locked_rule ("-" ^ toolchain);
+                       extdeps_rule (Some toolchain);
+                     ])));
         ]
       in
       List.map ~f:generate packages
@@ -370,8 +370,9 @@ let () =
                  {
                    value with
                    pelem =
-                     pin_depend "ocamlformat" "0.27.0"
+                     pin_depend "ocamlformat" "0.28.1"
                      :: { pelem = String "opam-file-format"; pos }
+                     :: { pelem = String "ocaml-index"; pos }
                      :: { pelem = String "sexplib"; pos }
                      :: { pelem = String "opam-dune-lint"; pos }
                      :: l;
@@ -451,10 +452,10 @@ let () =
                   as pin ->
                   rewrite_dependency package
                   |> List.map ~f:(fun package ->
-                         {
-                           pin with
-                           pelem = List { args with pelem = [ package; url ] };
-                         })
+                      {
+                        pin with
+                        pelem = List { args with pelem = [ package; url ] };
+                      })
                   |> Result.return
                 | { pos; _ } ->
                   Result.fail (Some pos, "unrecognized pin_depends")
@@ -494,7 +495,7 @@ let () =
           | Option (value, options) ->
             rewrite_dependency value
             |> List.map ~f:(fun value ->
-                   { item with pelem = Option (value, options) })
+                { item with pelem = Option (value, options) })
           | _ -> [ item ]
         else []
       and rewrite_command = function

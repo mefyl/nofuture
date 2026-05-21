@@ -1,2 +1,3 @@
 use nix .logistic/nix/shell.nix
-eval $(opam env --switch .)
+eval $(dune tools env)
+
