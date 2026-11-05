@@ -1,4 +1,4 @@
-(version 6.3.2)
+(version 6.5.0)
 
 (build
  (all_platforms
@@ -47,6 +47,6 @@
 (source
  (fetch
   (url
-   https://github.com/ocsigen/js_of_ocaml/releases/download/6.3.2/js_of_ocaml-6.3.2.tbz)
+   https://github.com/ocsigen/js_of_ocaml/releases/download/6.5.0/js_of_ocaml-6.5.0.tbz)
   (checksum
-   sha512=3cd59bd4395a3ac83f546ae20259b026b61cea33e3ef35ab0560ce0baadaf50ebefb704dba28246a3c8b1ce3ff6d8efdc3e514dcbd728af0afb2e2a2c2032620)))
+   sha512=ce476986cb2c78990f29b1d7a01bb173a0d30ad0e0a80ba7bde9aa8365952ed01eda4935d92a323b982b0c1c897b20ef01eabe75fe80e4da858f73f6a2d25232)))

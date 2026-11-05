@@ -1,4 +1,4 @@
-(version 5.7.1-504)
+(version 5.9)
 
 (build
  (all_platforms
@@ -28,7 +28,6 @@
 
 (source
  (fetch
-  (url
-   https://github.com/ocaml/merlin/releases/download/v5.7.1-504/merlin-5.7.1-504.tbz)
+  (url https://github.com/ocaml/merlin/releases/download/v5.9/merlin-5.9.tbz)
   (checksum
-   sha512=9391d3a0aaa5065a02c6f5faaf7149f8f800c748d9be5ccff6af800ce73bdf418ead72dbeaf6ee7a6cbeae2c8e56285fbe422740ed407bcc4edab889dd1c8f9c)))
+   sha512=74756b28767cdfe10288720540582e818a9d946dd2406606724ebc7b68d1cf6623142e56a1e457f7862839732e7add365aec056930c7ac89be7036c22e5f29ae)))

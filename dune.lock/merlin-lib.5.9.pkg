@@ -1,0 +1,18 @@
+(version 5.9)
+
+(build
+ (all_platforms
+  ((action
+    (progn
+     (when %{pkg-self:dev} (run dune subst))
+     (run dune build -p %{pkg-self:name} -j %{jobs}))))))
+
+(depends
+ (all_platforms
+  (ocaml dune csexp)))
+
+(source
+ (fetch
+  (url https://github.com/ocaml/merlin/releases/download/v5.9/merlin-5.9.tbz)
+  (checksum
+   sha512=74756b28767cdfe10288720540582e818a9d946dd2406606724ebc7b68d1cf6623142e56a1e457f7862839732e7add365aec056930c7ac89be7036c22e5f29ae)))
