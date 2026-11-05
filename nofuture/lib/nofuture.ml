@@ -1,6 +1,6 @@
 (** [nofuture] is a unified monadic API for OCaml concurrency libraries. *)
 
-module type S = sig
+module type BLOCKING = sig
   (** Core primitive of concurrent code.
 
       A [Blocking.t] is a computation that can block in some fashion, such as
@@ -130,6 +130,10 @@ module type S = sig
   end
 
   include module type of Blocking with type 'a t = 'a Blocking.t
+end
+
+module type S = sig
+  include BLOCKING
 
   (** Core primitive to run computations concurrently.
 
@@ -233,4 +237,50 @@ module type S_IO_TIME = sig
   include S
   include IO with module Blocking := Blocking
   include TIME with module Blocking := Blocking
+end
+
+(** Direct style blocking computations. *)
+module Blocking : BLOCKING with type 'a Blocking.t = 'a = struct
+  module Blocking = struct
+    type 'a t = 'a
+
+    let bind v ~f = f v
+    let return v = v
+    let map = fun v ~f -> f v
+    let both a b = (a, b)
+    let all computations = computations
+    let catch f handle = try f () with exn -> handle exn
+    let yield () = ()
+    let join v = v
+    let ignore_m _ = ()
+    let all_unit _ = ()
+
+    module Monad_infix = struct
+      let ( >>= ) v f = bind v ~f
+      let ( let* ) = ( >>= )
+      let ( >>| ) v f = map v ~f
+      let ( let+ ) = ( >>| )
+      let ( and* ) = both
+      let ( and+ ) = both
+    end
+
+    include Monad_infix
+
+    module Let_syntax = struct
+      let return = return
+
+      include Monad_infix
+
+      module Let_syntax = struct
+        let return = return
+        let bind = bind
+        let map = map
+        let both = both
+
+        module Open_on_rhs = struct end
+      end
+    end
+  end
+
+  include Blocking
 end
